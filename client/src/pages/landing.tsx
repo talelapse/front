@@ -15,7 +15,7 @@ export default function Landing() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Moon className="text-mystical-gold h-8 w-8" />
-              <span className="text-white text-xl font-bold">FateChat</span>
+              <span className="text-white text-xl font-bold">TaleLapse</span>
             </div>
             <div className="hidden md:flex space-x-6">
               <a href="#" className="text-white/80 hover:text-white transition-colors">서비스 소개</a>
@@ -99,7 +99,7 @@ export default function Landing() {
       <section className="py-16 px-4 bg-white/5 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-12">
-            FateChat만의 특별함
+            TaleLapse만의 특별함
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">

@@ -119,9 +119,9 @@ export default function Home() {
             <div className="flex items-center space-x-3">
               <Sparkles className="text-mystical-gold h-8 w-8 glow-gold" />
               <div>
-                <h1 className="text-lg font-bold font-mystical text-moonlight">FateChat</h1>
+                <h1 className="text-lg font-bold font-mystical text-moonlight">TaleLapse</h1>
                 <p className="text-sm text-star-silver">
-                  {user.firstName || user.email}님의 운명
+                  {user.firstName || user.email}님의 이야기
                 </p>
               </div>
             </div>

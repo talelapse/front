@@ -1,8 +1,8 @@
-# FateChat - AI Fortune Telling Application
+# TaleLapse - Conversational Story Application
 
 ## Overview
 
-FateChat is a full-stack web application that provides AI-powered fortune telling services in Korean. The application offers three types of fortune readings: traditional Korean Saju (사주팔자), Tarot, and Astrology. Users can engage in conversational fortune sessions and receive detailed personalized readings based on their birth information.
+TaleLapse is a full-stack web application that provides conversational story and guidance services in Korean. The application offers four types of conversations: traditional Korean Saju (사주팔자), Tarot, Astrology, and casual conversations. Users can engage in friendly conversational sessions and receive personalized insights based on their birth information.
 
 ## User Preferences
 
