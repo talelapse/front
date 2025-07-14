@@ -58,9 +58,9 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
                 </div>
                 
                 {/* Title with mystical font */}
-                <h3 className="text-lg font-bold font-mystical text-moonlight mb-1">{fortune.title}</h3>
-                <p className="text-xs text-star-silver/60 mb-3 font-mystical">{fortune.subtitle}</p>
-                <p className="text-star-silver text-sm mb-4">{fortune.description}</p>
+                <h3 className="text-lg font-bold font-mystical text-white mb-1 group-hover:text-mystical-gold transition-colors">{fortune.title}</h3>
+                <p className="text-xs text-mystical-gold/80 mb-3 font-mystical">{fortune.subtitle}</p>
+                <p className="text-gray-300 text-sm mb-4">{fortune.description}</p>
                 
                 {/* Mystical button */}
                 <Button 
