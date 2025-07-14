@@ -43,10 +43,10 @@ export default function Settings() {
 
   if (authLoading || !user) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-mystical-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">로딩 중...</p>
+          <div className="w-8 h-8 border-4 border-mystical-gold border-t-transparent rounded-full animate-spin mx-auto mb-4 glow-gold"></div>
+          <p className="text-star-silver">신비로운 설정을 불러오는 중...</p>
         </div>
       </div>
     );
@@ -59,37 +59,41 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-white border-b p-4 flex items-center space-x-3">
+      <div className="mystical-card border-b border-ethereal-violet/30 p-4 flex items-center space-x-3 shadow-lg">
         <Button
           variant="ghost"
           size="sm"
-          className="p-2 hover:bg-gray-100"
+          className="p-2 hover:bg-ethereal-violet/20 text-moonlight"
           onClick={() => setLocation("/")}
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h3 className="font-semibold text-gray-800">설정</h3>
+        <h3 className="font-semibold font-mystical text-moonlight">운명 설정</h3>
       </div>
 
       <div className="p-6 space-y-6">
         {/* Profile Section */}
-        <Card className="bg-gray-50">
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="w-16 h-16 bg-mystical-purple rounded-full flex items-center justify-center">
-                <span className="text-white text-xl font-bold">
+        <Card className="mystical-card glow-purple border-ethereal-violet/30">
+          <CardContent className="p-6 relative overflow-hidden">
+            {/* Mystical background elements */}
+            <div className="absolute top-2 right-4 w-16 h-16 bg-gradient-to-br from-mystical-gold/10 to-transparent rounded-full blur-sm"></div>
+            <div className="absolute bottom-2 left-4 w-12 h-12 bg-gradient-to-tr from-ethereal-violet/10 to-transparent rounded-full blur-sm"></div>
+            
+            <div className="flex items-center space-x-4 mb-4 relative z-10">
+              <div className="w-16 h-16 bg-gradient-to-r from-mystical-purple to-ethereal-violet rounded-full flex items-center justify-center glow-purple">
+                <span className="text-white text-xl font-bold font-mystical">
                   {getUserInitial(user)}
                 </span>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">
-                  {user.firstName || user.email?.split('@')[0] || "사용자"}
+                <h3 className="font-semibold font-mystical text-moonlight">
+                  {user.firstName || user.email?.split('@')[0] || "운명의 구도자"}
                 </h3>
-                <p className="text-gray-600 text-sm">{user.email}</p>
+                <p className="text-star-silver text-sm">{user.email}</p>
                 {profileData && (
-                  <p className="text-gray-500 text-xs mt-1">
+                  <p className="text-mystical-gold/80 text-xs mt-1">
                     {new Date(profileData.birthDate).toLocaleDateString('ko-KR')} • {profileData.birthLocation}
                   </p>
                 )}
@@ -97,69 +101,69 @@ export default function Settings() {
             </div>
             <Button 
               variant="outline"
-              className="w-full"
+              className="w-full bg-ethereal-violet/20 border-mystical-gold/30 text-moonlight hover:bg-ethereal-violet/30 hover:border-mystical-gold/50 font-mystical"
               onClick={handleEditProfile}
             >
-              프로필 수정
+              운명 프로필 수정
             </Button>
           </CardContent>
         </Card>
 
         {/* Settings List */}
-        <div className="space-y-1">
+        <div className="space-y-2">
           <button
-            className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors"
+            className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all"
             onClick={handleEditProfile}
           >
             <div className="flex items-center space-x-3">
-              <User className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-800">기본정보 수정</span>
+              <User className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">기본정보 수정</span>
             </div>
-            <ArrowLeft className="h-4 w-4 text-gray-400 rotate-180" />
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
+          <button className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all">
             <div className="flex items-center space-x-3">
-              <Bell className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-800">알림 설정</span>
+              <Bell className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">신비한 알림 설정</span>
             </div>
-            <ArrowLeft className="h-4 w-4 text-gray-400 rotate-180" />
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
+          <button className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all">
             <div className="flex items-center space-x-3">
-              <History className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-800">운세 히스토리</span>
+              <History className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">운명의 기록</span>
             </div>
-            <ArrowLeft className="h-4 w-4 text-gray-400 rotate-180" />
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
+          <button className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all">
             <div className="flex items-center space-x-3">
-              <Lock className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-800">개인정보 처리방침</span>
+              <Lock className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">개인정보 보호</span>
             </div>
-            <ArrowLeft className="h-4 w-4 text-gray-400 rotate-180" />
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
+          <button className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all">
             <div className="flex items-center space-x-3">
-              <HelpCircle className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-800">고객지원</span>
+              <HelpCircle className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">신비한 도움말</span>
             </div>
-            <ArrowLeft className="h-4 w-4 text-gray-400 rotate-180" />
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>
         </div>
 
         {/* Logout */}
-        <div className="pt-6 border-t">
+        <div className="pt-6 border-t border-ethereal-violet/30">
           <Button
             variant="destructive"
-            className="w-full"
+            className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border-0 shadow-lg font-mystical"
             onClick={handleLogout}
           >
             <LogOut className="h-4 w-4 mr-2" />
-            로그아웃
+            운명에서 떠나기
           </Button>
         </div>
       </div>
