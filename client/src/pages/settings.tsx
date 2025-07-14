@@ -1,17 +1,19 @@
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, User, Bell, History, Lock, HelpCircle, LogOut } from "lucide-react";
+import { ArrowLeft, User, Bell, History, Lock, HelpCircle, LogOut, Database } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 import type { User as UserType, UserProfile } from "@shared/schema";
 
 export default function Settings() {
   const { user, isLoading: authLoading } = useAuth();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const { data: profileData } = useQuery<UserProfile>({
     queryKey: ["/api/profile"],
@@ -37,8 +39,35 @@ export default function Settings() {
     window.location.href = "/api/logout";
   };
 
+  const createDemoDataMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("/api/demo/create-data", "POST", {});
+    },
+    onSuccess: () => {
+      toast({
+        title: "데모 데이터 생성 완료",
+        description: "이제 히스토리에서 스토리북 기능을 확인할 수 있습니다.",
+      });
+      // Invalidate relevant queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ["/api/fortune/sessions"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/fortune/sessions/recent"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/fortune/storybook"] });
+    },
+    onError: (error) => {
+      toast({
+        title: "데모 데이터 생성 실패",
+        description: "데이터 생성 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleEditProfile = () => {
     setLocation("/profile-setup");
+  };
+
+  const handleCreateDemoData = () => {
+    createDemoDataMutation.mutate();
   };
 
   if (authLoading || !user) {
@@ -150,6 +179,20 @@ export default function Settings() {
             <div className="flex items-center space-x-3">
               <HelpCircle className="h-5 w-5 text-mystical-gold" />
               <span className="text-moonlight font-mystical">신비한 도움말</span>
+            </div>
+            <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
+          </button>
+
+          <button 
+            className="w-full mystical-card hover:glow-purple border border-ethereal-violet/30 hover:border-mystical-purple/50 flex items-center justify-between p-4 rounded-lg transition-all"
+            onClick={handleCreateDemoData}
+            disabled={createDemoDataMutation.isPending}
+          >
+            <div className="flex items-center space-x-3">
+              <Database className="h-5 w-5 text-mystical-gold" />
+              <span className="text-moonlight font-mystical">
+                {createDemoDataMutation.isPending ? "데모 데이터 생성 중..." : "데모 데이터 생성"}
+              </span>
             </div>
             <ArrowLeft className="h-4 w-4 text-star-silver rotate-180" />
           </button>

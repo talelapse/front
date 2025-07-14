@@ -189,6 +189,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Demo data endpoint
+  app.post('/api/demo/create-data', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { createDemoData } = await import('./demo-data');
+      const result = await createDemoData(userId);
+      res.json(result);
+    } catch (error) {
+      console.error("Error creating demo data:", error);
+      res.status(500).json({ message: "데모 데이터 생성에 실패했습니다." });
+    }
+  });
+
   // Complete fortune session
   app.post('/api/fortune/sessions/:id/complete', isAuthenticated, async (req: any, res) => {
     try {

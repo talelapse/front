@@ -113,10 +113,11 @@ The application is designed for deployment on Replit but can be adapted for othe
 
 ## Recent Changes
 
+- **Implemented storybook history feature** - added beautiful AI-generated story summaries for older conversations (24hr+)
+- **Enhanced history page layout** - now shows recent sessions normally and older sessions as poetic story summaries
+- **Added demo data generation** - created comprehensive demo data system accessible through settings page
+- **Improved storage with time-based filtering** - added methods for recent vs old session separation
+- **Updated API endpoints** - new routes for recent sessions and storybook generation using OpenAI
 - **Implemented conversational tone throughout the app** - softened language from mystical/dramatic to friendly and approachable
 - **Added "가벼운 대화" feature** - new casual conversation type for non-fortune related discussions
 - **Updated all AI prompts** to use conversational, friendly tone instead of formal mystical language
-- **Enhanced chat interface** with type-specific quick action buttons and softer messaging
-- **Improved session handling** for casual conversations (simplified completion without formal analysis)
-- **Updated history page** to display casual conversation sessions with proper icons and labeling
-- **Refined UI text** across all components to be more conversational and less intense
