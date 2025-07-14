@@ -8,6 +8,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Moon, Settings, Bell, ArrowDown, Sparkles, Star, Calendar, MapPin, ChevronRight } from "lucide-react";
+import FortuneCards from "@/components/fortune-cards";
 import type { User, UserProfile, FortuneSession } from "@shared/schema";
 
 export default function Home() {
@@ -158,13 +159,13 @@ export default function Home() {
             </h2>
             <p className="text-star-silver mb-4">오늘은 어떤 운명의 신비가 궁금하신가요?</p>
             {profileData && (
-              <div className="flex items-center space-x-4 text-sm">
+              <div className="flex items-center space-x-4 text-sm text-star-silver">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4" />
+                  <Calendar className="h-4 w-4 text-mystical-gold" />
                   <span>{new Date(profileData.birthDate).toLocaleDateString('ko-KR')}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <MapPin className="h-4 w-4" />
+                  <MapPin className="h-4 w-4 text-mystical-gold" />
                   <span>{profileData.birthLocation}</span>
                 </div>
               </div>
@@ -172,84 +173,39 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {/* 사주 */}
-          <Card className="group hover:shadow-md transition-shadow cursor-pointer">
-            <CardContent className="p-6 text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                <ArrowDown className="text-mystical-purple h-8 w-8" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">사주팔자</h3>
-              <p className="text-gray-600 text-sm mb-4">생년월일을 바탕으로 한 정통 사주 풀이</p>
-              <Button 
-                className="w-full bg-mystical-purple hover:bg-purple-700"
-                onClick={() => handleStartFortune('saju', '사주 상담')}
-                disabled={startFortuneMutation.isPending}
-              >
-                시작하기
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* 타로 */}
-          <Card className="group hover:shadow-md transition-shadow cursor-pointer">
-            <CardContent className="p-6 text-center">
-              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-200 transition-colors">
-                <Sparkles className="text-mystical-gold h-8 w-8" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">타로</h3>
-              <p className="text-gray-600 text-sm mb-4">카드가 전하는 신비로운 메시지</p>
-              <Button 
-                className="w-full bg-mystical-gold hover:bg-yellow-500"
-                onClick={() => handleStartFortune('tarot', '타로 상담')}
-                disabled={startFortuneMutation.isPending}
-              >
-                시작하기
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* 점성술 */}
-          <Card className="group hover:shadow-md transition-shadow cursor-pointer">
-            <CardContent className="p-6 text-center">
-              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-200 transition-colors">
-                <Star className="text-indigo-600 h-8 w-8" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">점성술</h3>
-              <p className="text-gray-600 text-sm mb-4">별자리와 행성으로 보는 운세</p>
-              <Button 
-                className="w-full bg-indigo-600 hover:bg-indigo-700"
-                onClick={() => handleStartFortune('astrology', '점성술 상담')}
-                disabled={startFortuneMutation.isPending}
-              >
-                시작하기
-              </Button>
-            </CardContent>
-          </Card>
+        {/* Mystical Fortune Cards */}
+        <div className="mb-8">
+          <FortuneCards 
+            onSelectFortune={handleStartFortune}
+            isLoading={startFortuneMutation.isPending}
+          />
         </div>
 
         {/* Recent History */}
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">최근 운세</h3>
+        <Card className="mystical-card glow-purple border-ethereal-violet/30">
+          <CardContent className="p-6 relative overflow-hidden">
+            {/* Mystical background elements */}
+            <div className="absolute top-4 right-6 w-16 h-16 bg-gradient-to-br from-mystical-gold/5 to-transparent rounded-full blur-lg"></div>
+            <div className="absolute bottom-4 left-6 w-12 h-12 bg-gradient-to-tr from-ethereal-violet/5 to-transparent rounded-full blur-lg"></div>
+            
+            <div className="flex items-center justify-between mb-4 relative z-10">
+              <h3 className="text-lg font-semibold font-mystical text-moonlight">운명의 기록</h3>
               <Button 
                 variant="ghost" 
                 size="sm"
-                className="text-mystical-purple hover:bg-purple-50"
+                className="text-mystical-gold hover:bg-ethereal-violet/20 hover:glow-gold"
                 onClick={() => setLocation("/settings")}
               >
-                전체 보기
+                모든 기록 보기
               </Button>
             </div>
 
             {recentSessions.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-3 relative z-10">
                 {recentSessions.map((session) => (
                   <div
                     key={session.id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                    className="mystical-card border border-ethereal-violet/30 hover:border-mystical-purple/50 hover:glow-purple flex items-center justify-between p-4 rounded-lg transition-all cursor-pointer"
                     onClick={() => {
                       if (session.isCompleted) {
                         setLocation(`/result/${session.id}`);
@@ -259,26 +215,26 @@ export default function Home() {
                     }}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 bg-ethereal-violet/30 rounded-full flex items-center justify-center">
                         {session.fortuneType === 'saju' && <ArrowDown className="text-mystical-purple h-5 w-5" />}
                         {session.fortuneType === 'tarot' && <Sparkles className="text-mystical-gold h-5 w-5" />}
-                        {session.fortuneType === 'astrology' && <Star className="text-indigo-600 h-5 w-5" />}
+                        {session.fortuneType === 'astrology' && <Star className="text-cosmic-indigo h-5 w-5" />}
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-800">{session.title}</h4>
-                        <p className="text-sm text-gray-600">
+                        <h4 className="font-medium font-mystical text-moonlight">{session.title}</h4>
+                        <p className="text-sm text-star-silver">
                           {new Date(session.createdAt!).toLocaleDateString('ko-KR')}
                         </p>
                       </div>
                     </div>
-                    <ChevronRight className="h-5 w-5 text-gray-400" />
+                    <ChevronRight className="h-5 w-5 text-mystical-gold" />
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">
-                <p>아직 운세 상담 기록이 없습니다.</p>
-                <p className="text-sm">위의 운세 카드를 선택해서 시작해보세요!</p>
+              <div className="text-center py-8 text-star-silver relative z-10">
+                <p className="font-mystical">아직 운명의 기록이 없습니다.</p>
+                <p className="text-sm text-star-silver/60">위의 신비로운 카드를 선택해서 운명을 탐험해보세요!</p>
               </div>
             )}
           </CardContent>
