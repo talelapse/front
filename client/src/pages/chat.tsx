@@ -221,14 +221,14 @@ export default function Chat() {
       </div>
 
       {/* Chat Input */}
-      <div className="mystical-card border-t border-ethereal-violet/30 p-4">
+      <div className="bg-gray-900/95 backdrop-blur-sm border-t-2 border-mystical-purple/30 p-4 shadow-lg">
         <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
           <div className="flex-1 relative">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="신비로운 메시지를 입력하세요..."
-              className="pr-12 bg-shadow-purple/40 text-moonlight placeholder:text-star-silver/60 rounded-2xl border-ethereal-violet/30 focus:ring-2 focus:ring-mystical-gold focus:bg-shadow-purple/60 focus:border-mystical-gold/50"
+              className="pr-12 bg-gray-800 text-white placeholder:text-gray-300 rounded-2xl border-2 border-mystical-purple/70 focus:ring-4 focus:ring-mystical-gold/50 focus:bg-gray-700 focus:border-mystical-gold focus:outline-none shadow-lg h-12"
               disabled={sendMessageMutation.isPending}
             />
             <Button
@@ -257,7 +257,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
                 onClick={() => handleQuickMessage("연애운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
@@ -266,7 +266,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
                 onClick={() => handleQuickMessage("재물운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
@@ -275,7 +275,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
                 onClick={() => handleQuickMessage("건강운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
