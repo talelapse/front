@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
-import { ArrowLeft, ArrowDown, Sparkles, Star, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowDown, Sparkles, Star, ChevronRight, MessageCircle } from "lucide-react";
 import type { FortuneSession } from "@shared/schema";
 
 export default function History() {
@@ -20,6 +20,8 @@ export default function History() {
         return '타로';
       case 'astrology':
         return '별자리';
+      case 'casual':
+        return '가벼운 대화';
       default:
         return type;
     }
@@ -33,6 +35,8 @@ export default function History() {
         return <Sparkles className="text-mystical-gold h-5 w-5" />;
       case 'astrology':
         return <Star className="text-cosmic-indigo h-5 w-5" />;
+      case 'casual':
+        return <MessageCircle className="text-emerald-400 h-5 w-5" />;
       default:
         return <ArrowDown className="text-mystical-purple h-5 w-5" />;
     }
@@ -68,7 +72,7 @@ export default function History() {
               <ArrowLeft className="h-4 w-4 mr-2" />
               돌아가기
             </Button>
-            <h1 className="text-3xl font-bold font-mystical text-moonlight">운명의 기록</h1>
+            <h1 className="text-3xl font-bold font-mystical text-moonlight">이야기 기록</h1>
           </div>
         </div>
 
@@ -82,7 +86,7 @@ export default function History() {
             {sessions.length > 0 ? (
               <div className="space-y-4 relative z-10">
                 <p className="text-star-silver mb-6 font-mystical">
-                  총 {sessions.length}개의 운명의 기록이 있습니다.
+                  총 {sessions.length}개의 이야기 기록이 있습니다.
                 </p>
                 
                 {sessions.map((session) => (
@@ -133,15 +137,15 @@ export default function History() {
                 <div className="w-20 h-20 bg-ethereal-violet/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="h-10 w-10 text-mystical-gold" />
                 </div>
-                <h3 className="text-xl font-mystical text-moonlight mb-2">아직 운명의 기록이 없습니다</h3>
+                <h3 className="text-xl font-mystical text-moonlight mb-2">아직 이야기 기록이 없습니다</h3>
                 <p className="text-star-silver/80 mb-6">
-                  신비로운 운세를 체험해보세요!
+                  편안한 대화를 시작해보세요!
                 </p>
                 <Button
                   className="bg-gradient-to-r from-mystical-purple to-ethereal-violet hover:from-mystical-purple/90 hover:to-ethereal-violet/90 glow-purple"
                   onClick={() => setLocation("/")}
                 >
-                  운세 보러가기
+                  이야기 시작하기
                 </Button>
               </div>
             )}

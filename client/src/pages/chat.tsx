@@ -258,28 +258,28 @@ export default function Chat() {
                 variant="secondary"
                 size="sm"
                 className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
-                onClick={() => handleQuickMessage("연애운은 어떤가요?")}
+                onClick={() => handleQuickMessage("연애에 대해 이야기해볼까요?")}
                 disabled={sendMessageMutation.isPending}
               >
-                연애운은?
+                연애 이야기
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
                 className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
-                onClick={() => handleQuickMessage("재물운은 어떤가요?")}
+                onClick={() => handleQuickMessage("돈과 직업에 대해 이야기해볼까요?")}
                 disabled={sendMessageMutation.isPending}
               >
-                재물운은?
+                재물 이야기
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
                 className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
-                onClick={() => handleQuickMessage("건강운은 어떤가요?")}
+                onClick={() => handleQuickMessage("건강에 대해 이야기해볼까요?")}
                 disabled={sendMessageMutation.isPending}
               >
-                건강운은?
+                건강 이야기
               </Button>
             </>
           )}
@@ -288,20 +288,20 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
-                onClick={() => handleQuickMessage("카드를 한 장 뽑아주세요")}
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
+                onClick={() => handleQuickMessage("카드와 함께 이야기해볼까요?")}
                 disabled={sendMessageMutation.isPending}
               >
-                카드 뽑기
+                카드 이야기
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
-                onClick={() => handleQuickMessage("연애에 대해 알고 싶어요")}
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
+                onClick={() => handleQuickMessage("요즘 고민이 있어서 조언을 듣고 싶어요")}
                 disabled={sendMessageMutation.isPending}
               >
-                연애 타로
+                고민 상담
               </Button>
             </>
           )}
@@ -310,20 +310,51 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
-                onClick={() => handleQuickMessage("오늘의 별자리 운세는?")}
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
+                onClick={() => handleQuickMessage("제 별자리 특성에 대해 이야기해주세요")}
                 disabled={sendMessageMutation.isPending}
               >
-                오늘의 운세
+                별자리 특성
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
-                onClick={() => handleQuickMessage("이번 달 운세는?")}
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-mystical-purple border-mystical-purple/50 hover:border-mystical-purple"
+                onClick={() => handleQuickMessage("요즘 어떤 에너지를 받고 있을까요?")}
                 disabled={sendMessageMutation.isPending}
               >
-                이번 달 운세
+                현재 에너지
+              </Button>
+            </>
+          )}
+          {session.fortuneType === 'casual' && (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-emerald-600 border-emerald-500/50 hover:border-emerald-500"
+                onClick={() => handleQuickMessage("요즘 고민이 있는데 들어줄 수 있나요?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                고민 상담
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-emerald-600 border-emerald-500/50 hover:border-emerald-500"
+                onClick={() => handleQuickMessage("어떤 선택을 해야 할지 모르겠어요")}
+                disabled={sendMessageMutation.isPending}
+              >
+                선택의 고민
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm bg-gray-700 text-white hover:bg-emerald-600 border-emerald-500/50 hover:border-emerald-500"
+                onClick={() => handleQuickMessage("가벼운 일상 이야기를 나누고 싶어요")}
+                disabled={sendMessageMutation.isPending}
+              >
+                일상 이야기
               </Button>
             </>
           )}

@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Sparkles, Star } from "lucide-react";
+import { ArrowDown, Sparkles, Star, MessageCircle } from "lucide-react";
 
 interface FortuneCardsProps {
   onSelectFortune: (fortuneType: string, title: string) => void;
@@ -11,8 +11,8 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
   const fortuneTypes = [
     {
       type: 'saju',
-      title: '사주팔자',
-      description: '생년월일을 바탕으로 한 정통 사주 풀이',
+      title: '사주팔자 상담',
+      description: '생년월일을 바탕으로 한 성격과 삶의 방향 이야기',
       subtitle: '四柱八字',
       icon: ArrowDown,
       gradient: 'from-mystical-purple to-ethereal-violet',
@@ -20,8 +20,8 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
     },
     {
       type: 'tarot',
-      title: '타로',
-      description: '카드가 전하는 신비로운 메시지',
+      title: '타로 이야기',
+      description: '카드와 함께하는 편안한 대화',
       subtitle: 'TAROT',
       icon: Sparkles,
       gradient: 'from-mystical-gold to-ancient-amber',
@@ -29,12 +29,21 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
     },
     {
       type: 'astrology',
-      title: '점성술',
-      description: '별자리와 행성으로 보는 운세',
+      title: '별자리 이야기',
+      description: '별자리와 행성으로 알아보는 나의 특성',
       subtitle: 'ASTROLOGY',
       icon: Star,
       gradient: 'from-cosmic-indigo to-ethereal-violet',
       glow: 'glow-purple',
+    },
+    {
+      type: 'casual',
+      title: '가벼운 대화',
+      description: '일상의 고민과 궁금한 것들을 편하게 나눠보세요',
+      subtitle: 'CASUAL TALK',
+      icon: MessageCircle,
+      gradient: 'from-emerald-500 to-teal-600',
+      glow: 'glow-emerald',
     },
   ];
 

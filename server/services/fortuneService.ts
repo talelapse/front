@@ -111,7 +111,16 @@ export class FortuneService {
       .map(m => `${m.role}: ${m.content}`)
       .join('\n');
 
-    // Generate detailed analysis
+    // For casual conversations, just mark as completed without formal analysis
+    if (session.fortuneType === 'casual') {
+      await storage.updateFortuneSession(sessionId, {
+        isCompleted: true,
+        summary: "편안한 대화 - 좋은 시간이었어요",
+      });
+      return;
+    }
+
+    // Generate detailed analysis for fortune sessions
     const analysis = await generateDetailedFortuneAnalysis(
       session.fortuneType,
       userProfile,
@@ -132,23 +141,29 @@ export class FortuneService {
 
     await storage.createFortuneResult(resultData);
 
+    const sessionTypeText = session.fortuneType === 'saju' ? '사주 이야기' :
+                           session.fortuneType === 'tarot' ? '타로 이야기' :
+                           '별자리 이야기';
+
     // Mark session as completed
     await storage.updateFortuneSession(sessionId, {
       isCompleted: true,
-      summary: `${session.fortuneType} 상담 - 종합운 ${analysis.overallScore}점`,
+      summary: `${sessionTypeText} - 종합 ${analysis.overallScore}점`,
     });
   }
 
   private getInitialMessage(fortuneType: string): string {
     switch (fortuneType) {
       case 'saju':
-        return "안녕하세요! 사주 마스터입니다. 생년월일을 바탕으로 정통 사주팔자를 풀어드리겠습니다. 어떤 것이 가장 궁금하신가요?";
+        return "안녕하세요! 사주 상담사입니다. 생년월일을 바탕으로 성격과 삶의 방향에 대해 편안하게 이야기해보세요. 어떤 것이 궁금하신가요?";
       case 'tarot':
-        return "안녕하세요! 타로 마스터입니다. 신비로운 타로 카드가 전하는 메시지를 들려드리겠습니다. 어떤 주제로 카드를 뽑아볼까요?";
+        return "안녕하세요! 타로와 함께 편안한 대화를 나눠보세요. 일상의 고민이나 궁금한 것들을 자유롭게 말씀해 주세요.";
       case 'astrology':
-        return "안녕하세요! 점성술 마스터입니다. 별자리와 행성의 위치를 바탕으로 운세를 풀어드리겠습니다. 무엇이 궁금하신지 말씀해 주세요.";
+        return "안녕하세요! 별자리 이야기를 함께 나눠보아요. 당신의 특성이나 궁금한 점들을 편하게 말씀해 주세요.";
+      case 'casual':
+        return "안녕하세요! 편안하게 대화를 나눠보아요. 일상의 고민, 궁금한 점, 무엇이든 자유롭게 이야기해 주세요.";
       default:
-        return "안녕하세요! 운세 상담사입니다. 어떤 것이 궁금하신가요?";
+        return "안녕하세요! 편안한 대화를 나눠보세요. 어떤 이야기든 자유롭게 말씀해 주세요.";
     }
   }
 }

@@ -163,3 +163,7 @@
     box-shadow: 0 0 30px rgba(107, 70, 193, 0.6); 
   }
 }
+
+.glow-emerald {
+  box-shadow: 0 0 20px #10b981;
+}

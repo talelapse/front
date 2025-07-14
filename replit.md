@@ -113,8 +113,10 @@ The application is designed for deployment on Replit but can be adapted for othe
 
 ## Recent Changes
 
-- **Created dedicated history page** (/history) for viewing all fortune sessions with mystical theme
-- **Fixed "모든 기록 보기" navigation** to properly route to history page instead of settings
-- **Added session filtering** to only show sessions where users have actually sent messages (hasUserMessage flag)
-- **Enhanced database schema** with hasUserMessage field to track user engagement
-- **Improved UI consistency** with mystical dark theme across all pages
+- **Implemented conversational tone throughout the app** - softened language from mystical/dramatic to friendly and approachable
+- **Added "가벼운 대화" feature** - new casual conversation type for non-fortune related discussions
+- **Updated all AI prompts** to use conversational, friendly tone instead of formal mystical language
+- **Enhanced chat interface** with type-specific quick action buttons and softer messaging
+- **Improved session handling** for casual conversations (simplified completion without formal analysis)
+- **Updated history page** to display casual conversation sessions with proper icons and labeling
+- **Refined UI text** across all components to be more conversational and less intense

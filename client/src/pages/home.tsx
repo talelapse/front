@@ -157,7 +157,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold font-mystical mb-2 text-moonlight">
               안녕하세요, {user.firstName || user.email?.split('@')[0]}님!
             </h2>
-            <p className="text-star-silver mb-4">오늘은 어떤 운명의 신비가 궁금하신가요?</p>
+            <p className="text-star-silver mb-4">오늘은 어떤 이야기가 궁금하신가요?</p>
             {profileData && (
               <div className="flex items-center space-x-4 text-sm text-star-silver">
                 <div className="flex items-center space-x-2">
@@ -189,7 +189,7 @@ export default function Home() {
             <div className="absolute bottom-4 left-6 w-12 h-12 bg-gradient-to-tr from-ethereal-violet/5 to-transparent rounded-full blur-lg"></div>
             
             <div className="flex items-center justify-between mb-4 relative z-10">
-              <h3 className="text-lg font-semibold font-mystical text-moonlight">운명의 기록</h3>
+              <h3 className="text-lg font-semibold font-mystical text-moonlight">이야기 기록</h3>
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -233,8 +233,8 @@ export default function Home() {
               </div>
             ) : (
               <div className="text-center py-8 text-star-silver relative z-10">
-                <p className="font-mystical">아직 운명의 기록이 없습니다.</p>
-                <p className="text-sm text-star-silver/60">위의 신비로운 카드를 선택해서 운명을 탐험해보세요!</p>
+                <p className="font-mystical">아직 이야기 기록이 없습니다.</p>
+                <p className="text-sm text-star-silver/60">위의 카드를 선택해서 편안한 이야기를 시작해보세요!</p>
               </div>
             )}
           </CardContent>
