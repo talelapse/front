@@ -46,19 +46,28 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              당신을 위한<br />
-              <span className="text-mystical-gold">특별한 운세</span>
+              당신의 <span className="text-mystical-gold">이야기</span>를 들어주는<br />
+              <span className="text-mystical-gold">특별한 친구</span>
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              생년월일부터 출생 시각까지, 당신의 정보를 바탕으로 
-              사주·타로·점성술의 신비로운 세계를 경험해보세요
+              운세만이 아닌 일상의 고민, 선택의 순간, 마음의 이야기까지
+              언제나 따뜻하게 들어드리는 AI 상담사와 함께하세요
             </p>
           </div>
           
           {/* Hero Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            {/* 이야기 Card - 강조 */}
+            <Card className="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 backdrop-blur-md border-emerald-400/30 hover:from-emerald-500/30 hover:to-teal-500/30 transition-all duration-300 animate-float transform hover:scale-105 shadow-xl">
+              <CardContent className="p-6 text-center">
+                <div className="text-4xl mb-4 animate-pulse">💬</div>
+                <h3 className="text-white font-semibold text-lg mb-2 text-emerald-200">이야기</h3>
+                <p className="text-white/80 text-sm font-medium">일상의 모든 순간을 함께 나누는 따뜻한 대화</p>
+              </CardContent>
+            </Card>
+            
             {/* 사주 Card */}
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 animate-float">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 animate-float" style={{animationDelay: '0.5s'}}>
               <CardContent className="p-6 text-center">
                 <div className="text-4xl mb-4">🔮</div>
                 <h3 className="text-white font-semibold text-lg mb-2">사주팔자</h3>
@@ -76,7 +85,7 @@ export default function Landing() {
             </Card>
             
             {/* 점성술 Card */}
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 animate-float" style={{animationDelay: '2s'}}>
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 animate-float" style={{animationDelay: '1.5s'}}>
               <CardContent className="p-6 text-center">
                 <div className="text-4xl mb-4">⭐</div>
                 <h3 className="text-white font-semibold text-lg mb-2">점성술</h3>
@@ -152,39 +161,42 @@ export default function Landing() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">서비스 소개</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              TaleLapse는 전통 운세와 현대 기술의 만남으로, 개인화된 운세 상담을 제공하는 새로운 플랫폼입니다
+              TaleLapse는 운세를 넘어 당신의 일상 이야기를 들어주는 특별한 친구입니다. 
+              고민이 있을 때, 선택이 어려울 때, 그저 누군가와 대화하고 싶을 때 언제든 찾아오세요.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">나만을 위한 특별한 이야기</h3>
+              <h3 className="text-2xl font-semibold text-white mb-6">흘러가는 이야기, 따뜻한 상담</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-mystical-gold rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/80">생년월일, 출생시간 등 개인 정보를 바탕으로 한 정확한 운세 분석</p>
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/80"><strong className="text-emerald-200">일상 대화</strong> - 어떤 주제든 편안하게 이야기할 수 있는 따뜻한 공간</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/80"><strong className="text-emerald-200">고민 상담</strong> - 선택의 순간, 인생의 갈림길에서 함께 고민해드립니다</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-mystical-gold rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/80">AI와의 자연스러운 대화를 통한 편안한 상담 경험</p>
+                  <p className="text-white/80"><strong className="text-mystical-gold">운세 상담</strong> - 사주, 타로, 점성술을 통한 개인화된 운세 분석</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-mystical-gold rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/80">과거 상담 기록을 아름다운 이야기로 저장하여 언제든 다시 확인</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-mystical-gold rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/80">운세뿐만 아니라 일상 고민도 함께 나눌 수 있는 친근한 공간</p>
+                  <p className="text-white/80"><strong className="text-mystical-gold">이야기 보관</strong> - 대화 기록을 아름다운 이야기로 저장하여 언제든 다시 확인</p>
                 </div>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <div className="text-6xl mb-4">✨</div>
-                <h4 className="text-xl font-semibold text-white mb-4">언제나 함께하는 운세 친구</h4>
-                <p className="text-white/70">
-                  복잡하고 어려운 운세 용어 대신, 친구와 대화하듯 편안하게 운세를 알아보세요. 
-                  당신의 이야기를 들어주고 따뜻한 조언을 건네는 특별한 경험을 만나보세요.
+              <div className="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 backdrop-blur-md rounded-2xl p-8 border border-emerald-400/30 shadow-xl">
+                <div className="text-6xl mb-4">🌟</div>
+                <h4 className="text-xl font-semibold text-white mb-4 text-emerald-200">언제나 함께하는 이야기 친구</h4>
+                <p className="text-white/80 leading-relaxed">
+                  <strong className="text-emerald-300">운세는 선택사항</strong>이에요. 그냥 오늘 하루 어땠는지, 
+                  무엇이 고민인지, 어떤 선택을 해야 할지 모르겠다면 언제든 이야기해 주세요. 
+                  <br /><br />
+                  <span className="text-mystical-gold">당신의 모든 순간이 소중한 이야기</span>가 됩니다.
                 </p>
               </div>
             </div>
@@ -196,26 +208,27 @@ export default function Landing() {
       <section id="services" className="py-20 px-4 bg-white/5 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">운세 종류</h2>
+            <h2 className="text-4xl font-bold text-white mb-6">대화의 종류</h2>
             <p className="text-xl text-white/80">
-              다양한 방식으로 당신의 운세와 미래를 알아보세요
+              운세부터 일상 이야기까지, 당신에게 필요한 모든 순간을 함께합니다
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* 이야기 */}
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 group">
+            {/* 이야기 - 강조 */}
+            <Card className="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 backdrop-blur-md border-emerald-400/30 hover:from-emerald-500/30 hover:to-teal-500/30 transition-all duration-300 group transform hover:scale-105 shadow-xl">
               <CardContent className="p-6 text-center">
-                <div className="text-5xl mb-4">💬</div>
-                <h3 className="text-white font-semibold text-xl mb-3">이야기</h3>
-                <p className="text-white/70 text-sm mb-4">
-                  일상의 고민이나 궁금한 점을 편안하게 대화하며 
-                  따뜻한 조언을 받아보세요
+                <div className="text-5xl mb-4 animate-pulse">💬</div>
+                <h3 className="text-emerald-200 font-semibold text-xl mb-3">이야기</h3>
+                <p className="text-white/80 text-sm mb-4 font-medium">
+                  <strong className="text-emerald-300">가장 중요한 기능!</strong><br />
+                  운세 없이도 언제든 대화할 수 있는 따뜻한 친구
                 </p>
-                <div className="space-y-2 text-xs text-white/60">
-                  <div>• 일상 고민 상담</div>
-                  <div>• 선택의 순간 조언</div>
-                  <div>• 마음의 위로</div>
+                <div className="space-y-2 text-xs text-white/70">
+                  <div>• 오늘 하루 어땠는지 이야기</div>
+                  <div>• 고민 상담과 선택의 조언</div>
+                  <div>• 마음의 위로와 격려</div>
+                  <div>• 그냥 누군가와 대화하고 싶을 때</div>
                 </div>
               </CardContent>
             </Card>
@@ -274,15 +287,24 @@ export default function Landing() {
           
           <div className="text-center mt-12">
             <p className="text-white/70 mb-6">
-              모든 운세는 AI와의 대화를 통해 진행되며, 궁금한 점을 자유롭게 물어볼 수 있습니다
+              모든 대화는 AI와 함께 진행되며, 운세든 일상 이야기든 자유롭게 나누실 수 있습니다
             </p>
-            <Button 
-              size="lg"
-              className="bg-mystical-gold text-black px-8 py-3 font-semibold hover:bg-yellow-500 hover:text-black"
-              onClick={handleLogin}
-            >
-              운세 보러 가기
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                className="bg-emerald-600 text-white px-8 py-3 font-semibold hover:bg-emerald-700 shadow-lg"
+                onClick={handleLogin}
+              >
+                이야기 나누러 가기
+              </Button>
+              <Button 
+                size="lg"
+                className="bg-mystical-gold text-black px-8 py-3 font-semibold hover:bg-yellow-500 hover:text-black"
+                onClick={handleLogin}
+              >
+                운세 보러 가기
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -398,26 +420,27 @@ export default function Landing() {
       <section className="py-20 px-4 bg-gradient-to-t from-deep-navy to-purple-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
-            당신만의 특별한 이야기를 시작해보세요
+            오늘 하루 어떠셨나요?<br />
+            <span className="text-emerald-300">당신의 이야기</span>를 들려주세요
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            지금 가입하고 AI와 함께하는 새로운 운세 경험을 만나보세요
+            운세도 좋지만, 그냥 누군가와 이야기하고 싶을 때가 있잖아요. 
+            언제든 편안하게 찾아와 주세요.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg"
+              className="bg-emerald-600 text-white px-8 py-4 text-lg font-semibold hover:bg-emerald-700 shadow-lg"
+              onClick={handleLogin}
+            >
+              이야기 시작하기
+            </Button>
             <Button 
               size="lg"
               className="bg-mystical-gold text-black px-8 py-4 text-lg font-semibold hover:bg-yellow-500 hover:text-black"
               onClick={handleLogin}
             >
-              무료로 시작하기
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              더 알아보기
+              운세 보러 가기
             </Button>
           </div>
         </div>
