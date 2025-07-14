@@ -15,11 +15,27 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CalendarDays } from "lucide-react";
 
-const profileFormSchema = insertUserProfileSchema.extend({
+// Step-by-step validation schemas
+const step1Schema = z.object({
+  birthDate: z.string().min(1, "생년월일을 선택해주세요"),
+});
+
+const step2Schema = z.object({
+  birthTime: z.string().optional(),
+  birthLocation: z.string().min(1, "출생지를 입력해주세요"),
+});
+
+const step3Schema = z.object({
+  gender: z.enum(["male", "female"], { required_error: "성별을 선택해주세요" }),
+});
+
+const profileFormSchema = z.object({
   birthDate: z.string().min(1, "생년월일을 선택해주세요"),
   birthTime: z.string().optional(),
   birthLocation: z.string().min(1, "출생지를 입력해주세요"),
   gender: z.enum(["male", "female"], { required_error: "성별을 선택해주세요" }),
+  preferredFortuneTypes: z.array(z.string()).default([]),
+  isSetupComplete: z.boolean().default(true),
 });
 
 type ProfileFormData = z.infer<typeof profileFormSchema>;
@@ -30,7 +46,7 @@ export default function ProfileSetup() {
   const { toast } = useToast();
 
   const form = useForm<ProfileFormData>({
-    resolver: zodResolver(profileFormSchema),
+    mode: "onChange",
     defaultValues: {
       birthDate: "",
       birthTime: "",
@@ -78,9 +94,25 @@ export default function ProfileSetup() {
     console.log("Current step:", step);
     console.log("Form errors:", form.formState.errors);
     
-    if (step < 3) {
-      setStep(step + 1);
-    } else {
+    // Basic step-by-step validation
+    if (step === 1) {
+      if (!data.birthDate) {
+        form.setError("birthDate", { message: "생년월일을 선택해주세요" });
+        return;
+      }
+      setStep(2);
+    } else if (step === 2) {
+      if (!data.birthLocation) {
+        form.setError("birthLocation", { message: "출생지를 입력해주세요" });
+        return;
+      }
+      setStep(3);
+    } else if (step === 3) {
+      if (!data.gender) {
+        form.setError("gender", { message: "성별을 선택해주세요" });
+        return;
+      }
+      // Final submission
       profileMutation.mutate(data);
     }
   };
