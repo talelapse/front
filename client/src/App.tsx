@@ -10,6 +10,7 @@ import ProfileSetup from "@/pages/profile-setup";
 import Chat from "@/pages/chat";
 import FortuneResult from "@/pages/fortune-result";
 import Settings from "@/pages/settings";
+import History from "@/pages/history";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/chat/:sessionId" component={Chat} />
           <Route path="/result/:sessionId" component={FortuneResult} />
           <Route path="/settings" component={Settings} />
+          <Route path="/history" component={History} />
         </>
       )}
       <Route component={NotFound} />

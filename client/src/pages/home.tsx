@@ -194,7 +194,7 @@ export default function Home() {
                 variant="ghost" 
                 size="sm"
                 className="text-mystical-gold hover:bg-ethereal-violet/20 hover:glow-gold"
-                onClick={() => setLocation("/settings")}
+                onClick={() => setLocation("/history")}
               >
                 모든 기록 보기
               </Button>
