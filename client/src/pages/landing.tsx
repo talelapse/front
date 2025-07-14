@@ -46,8 +46,8 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              AI가 풀어주는<br />
-              <span className="text-mystical-gold">나만의 운세</span>
+              당신을 위한<br />
+              <span className="text-mystical-gold">특별한 운세</span>
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
               생년월일부터 출생 시각까지, 당신의 정보를 바탕으로 
@@ -90,7 +90,7 @@ export default function Landing() {
             className="bg-mystical-gold text-black px-8 py-4 text-lg font-semibold hover:bg-yellow-500 hover:text-black animate-glow"
             onClick={handleLogin}
           >
-            지금 무료로 시작하기
+            지금 시작하기
           </Button>
         </div>
       </section>
@@ -108,8 +108,8 @@ export default function Landing() {
                 <Sparkles className="text-white h-6 w-6" />
               </div>
               <div>
-                <h3 className="text-white font-semibold text-lg mb-2">AI 기반 정확한 해석</h3>
-                <p className="text-white/70">최신 AI 기술과 전통 점술의 만남으로 더욱 정확하고 개인화된 운세를 제공합니다.</p>
+                <h3 className="text-white font-semibold text-lg mb-2">정확한 해석</h3>
+                <p className="text-white/70">현대 기술과 전통 점술의 만남으로 더욱 정확하고 개인화된 운세를 제공합니다.</p>
               </div>
             </div>
             
