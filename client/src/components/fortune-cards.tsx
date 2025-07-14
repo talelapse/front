@@ -77,7 +77,7 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
                   onClick={() => onSelectFortune(fortune.type, `${fortune.title} 상담`)}
                   disabled={isLoading}
                 >
-                  {isLoading ? '준비 중...' : '운명을 알아보기'}
+                  {isLoading ? '준비 중...' : '이야기 시작하기'}
                 </Button>
               </div>
             </CardContent>
