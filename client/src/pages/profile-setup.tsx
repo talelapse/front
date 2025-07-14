@@ -74,6 +74,10 @@ export default function ProfileSetup() {
   });
 
   const onSubmit = (data: ProfileFormData) => {
+    console.log("Form submitted with data:", data);
+    console.log("Current step:", step);
+    console.log("Form errors:", form.formState.errors);
+    
     if (step < 3) {
       setStep(step + 1);
     } else {
