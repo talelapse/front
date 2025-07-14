@@ -121,3 +121,5 @@ The application is designed for deployment on Replit but can be adapted for othe
 - **Refined chat interface** - casual conversations show "이야기 친구" as title and "대화 완료" as completion button
 - **Implemented storybook history feature** - added beautiful AI-generated story summaries for older conversations (24hr+)
 - **Added demo data generation** - created comprehensive demo data system accessible through settings page
+- **Emphasized TaleLapse core concept** - updated landing page to strongly highlight the "이야기 발자취" (story footprints) feature where conversations become beautiful storybook memories over time
+- **Added dedicated TaleLapse section** - created new landing page section explaining how conversations are compressed into fairy tale-like summaries and preserved as personal story footprints

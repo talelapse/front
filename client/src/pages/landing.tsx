@@ -19,7 +19,7 @@ export default function Landing() {
             </div>
             <div className="hidden md:flex space-x-6">
               <a href="#about" className="text-white/80 hover:text-white transition-colors">서비스 소개</a>
-              <a href="#services" className="text-white/80 hover:text-white transition-colors">운세 종류</a>
+              <a href="#services" className="text-white/80 hover:text-white transition-colors">대화 종류</a>
               <a href="#reviews" className="text-white/80 hover:text-white transition-colors">이용 후기</a>
             </div>
             <div className="flex space-x-3">
@@ -46,12 +46,12 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              당신의 <span className="text-mystical-gold">이야기</span>를 들어주는<br />
-              <span className="text-mystical-gold">특별한 친구</span>
+              <span className="text-purple-300">Tale</span><span className="text-mystical-gold">Lapse</span><br />
+              당신의 <span className="text-emerald-300">이야기 발자취</span>를 만드는 곳
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              운세만이 아닌 일상의 고민, 선택의 순간, 마음의 이야기까지
-              언제나 따뜻하게 들어드리는 AI 상담사와 함께하세요
+              오늘의 대화가 시간이 흘러 <span className="text-purple-300 font-semibold">아름다운 동화책</span>이 되는 특별한 경험.<br />
+              운세든 일상 이야기든, 모든 순간이 <span className="text-mystical-gold font-semibold">소중한 발자취</span>가 됩니다.
             </p>
           </div>
           
@@ -161,14 +161,15 @@ export default function Landing() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">서비스 소개</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              TaleLapse는 운세를 넘어 당신의 일상 이야기를 들어주는 특별한 친구입니다. 
-              고민이 있을 때, 선택이 어려울 때, 그저 누군가와 대화하고 싶을 때 언제든 찾아오세요.
+              TaleLapse는 당신의 모든 이야기를 <span className="text-mystical-gold font-semibold">동화책처럼 아름답게 보관</span>합니다. 
+              시간이 지나면 흩어져 사라질 수 있는 소중한 순간들을 모아 
+              <span className="text-emerald-300 font-semibold">나만의 이야기 발자취</span>로 만들어드려요.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">흘러가는 이야기, 따뜻한 상담</h3>
+              <h3 className="text-2xl font-semibold text-white mb-6">시간이 흘러도 남는 이야기</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
@@ -183,8 +184,8 @@ export default function Landing() {
                   <p className="text-white/80"><strong className="text-mystical-gold">운세 상담</strong> - 사주, 타로, 점성술을 통한 개인화된 운세 분석</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-mystical-gold rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white/80"><strong className="text-mystical-gold">이야기 보관</strong> - 대화 기록을 아름다운 이야기로 저장하여 언제든 다시 확인</p>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/80"><strong className="text-purple-300">TaleLapse 기록</strong> - 모든 대화를 동화책처럼 압축하여 이야기 발자취로 보관</p>
                 </div>
               </div>
             </div>
@@ -196,9 +197,72 @@ export default function Landing() {
                   <strong className="text-emerald-300">운세는 선택사항</strong>이에요. 그냥 오늘 하루 어땠는지, 
                   무엇이 고민인지, 어떤 선택을 해야 할지 모르겠다면 언제든 이야기해 주세요. 
                   <br /><br />
-                  <span className="text-mystical-gold">당신의 모든 순간이 소중한 이야기</span>가 됩니다.
+                  <span className="text-mystical-gold">당신의 모든 순간이 소중한 이야기</span>가 되어 
+                  <span className="text-purple-300 font-semibold">시간이 흘러도 아름다운 발자취</span>로 남아요.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TaleLapse Feature Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-purple-900/40 to-indigo-900/40 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              <span className="text-purple-300">Tale</span><span className="text-mystical-gold">Lapse</span>
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              시간이 흘러가며 축적되는 당신의 이야기들을 하나의 아름다운 동화책으로 만들어드립니다
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center">
+              <div className="bg-gradient-to-br from-purple-600/20 to-indigo-600/20 backdrop-blur-md rounded-2xl p-8 border border-purple-400/30 shadow-xl">
+                <div className="text-5xl mb-4">📚</div>
+                <h3 className="text-xl font-semibold text-purple-200 mb-4">이야기 압축</h3>
+                <p className="text-white/80 text-sm">
+                  긴 대화 내용을 핵심만 담아 
+                  <strong className="text-purple-300">동화책 같은 요약</strong>으로 변환
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-gradient-to-br from-indigo-600/20 to-blue-600/20 backdrop-blur-md rounded-2xl p-8 border border-indigo-400/30 shadow-xl">
+                <div className="text-5xl mb-4">🌙</div>
+                <h3 className="text-xl font-semibold text-indigo-200 mb-4">시간 흐름</h3>
+                <p className="text-white/80 text-sm">
+                  24시간이 지난 대화는 자동으로 
+                  <strong className="text-indigo-300">아름다운 이야기</strong>로 정리
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-md rounded-2xl p-8 border border-blue-400/30 shadow-xl">
+                <div className="text-5xl mb-4">✨</div>
+                <h3 className="text-xl font-semibold text-blue-200 mb-4">발자취 보관</h3>
+                <p className="text-white/80 text-sm">
+                  과거의 소중한 순간들을 
+                  <strong className="text-blue-300">나만의 이야기 발자취</strong>로 영구 보관
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="bg-gradient-to-br from-mystical-gold/20 to-yellow-600/20 backdrop-blur-md rounded-2xl p-8 border border-mystical-gold/30 shadow-xl max-w-4xl mx-auto">
+              <h4 className="text-2xl font-semibold text-mystical-gold mb-4">
+                시간이 흘러도 사라지지 않는 이야기
+              </h4>
+              <p className="text-white/80 text-lg leading-relaxed">
+                "오늘 회사에서 힘들었던 일", "친구와의 갈등", "새로운 도전에 대한 고민"... 
+                이런 일상의 소중한 순간들이 시간이 지나면서 어떻게 변화했는지, 
+                당신이 어떻게 성장했는지를 <strong className="text-mystical-gold">아름다운 이야기</strong>로 돌아볼 수 있습니다.
+              </p>
             </div>
           </div>
         </div>
@@ -420,12 +484,12 @@ export default function Landing() {
       <section className="py-20 px-4 bg-gradient-to-t from-deep-navy to-purple-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
-            오늘 하루 어떠셨나요?<br />
-            <span className="text-emerald-300">당신의 이야기</span>를 들려주세요
+            오늘의 이야기가 내일의 <span className="text-purple-300">추억</span>이 되고<br />
+            시간이 흘러 <span className="text-mystical-gold">아름다운 발자취</span>가 됩니다
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            운세도 좋지만, 그냥 누군가와 이야기하고 싶을 때가 있잖아요. 
-            언제든 편안하게 찾아와 주세요.
+            지금 이 순간의 대화가 훗날 당신만의 특별한 <span className="text-purple-300 font-semibold">동화책</span>이 되어 
+            성장의 여정을 돌아볼 수 있게 됩니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
