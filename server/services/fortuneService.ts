@@ -54,6 +54,13 @@ export class FortuneService {
       throw new Error("세션을 찾을 수 없습니다.");
     }
 
+    // Mark session as having user message if this is the first user message
+    if (!session.hasUserMessage) {
+      await storage.updateFortuneSession(sessionId, {
+        hasUserMessage: true,
+      });
+    }
+
     const userProfile = await storage.getUserProfile(userId);
     if (!userProfile) {
       throw new Error("사용자 프로필을 찾을 수 없습니다.");

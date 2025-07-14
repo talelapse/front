@@ -110,3 +110,11 @@ The application follows a modern full-stack architecture with a clear separation
 - `REPL_ID`: Replit environment identifier
 
 The application is designed for deployment on Replit but can be adapted for other platforms with minimal configuration changes. The modular architecture allows for easy scaling and maintenance of individual components.
+
+## Recent Changes
+
+- **Created dedicated history page** (/history) for viewing all fortune sessions with mystical theme
+- **Fixed "모든 기록 보기" navigation** to properly route to history page instead of settings
+- **Added session filtering** to only show sessions where users have actually sent messages (hasUserMessage flag)
+- **Enhanced database schema** with hasUserMessage field to track user engagement
+- **Improved UI consistency** with mystical dark theme across all pages

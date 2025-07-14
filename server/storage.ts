@@ -116,7 +116,10 @@ export class DatabaseStorage implements IStorage {
     return await db
       .select()
       .from(fortuneSessions)
-      .where(eq(fortuneSessions.userId, userId))
+      .where(and(
+        eq(fortuneSessions.userId, userId),
+        eq(fortuneSessions.hasUserMessage, true)
+      ))
       .orderBy(desc(fortuneSessions.createdAt));
   }
 

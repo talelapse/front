@@ -59,6 +59,7 @@ export const fortuneSessions = pgTable("fortune_sessions", {
   title: varchar("title").notNull(),
   summary: text("summary"),
   isCompleted: boolean("is_completed").default(false),
+  hasUserMessage: boolean("has_user_message").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
