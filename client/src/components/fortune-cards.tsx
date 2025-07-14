@@ -10,6 +10,15 @@ interface FortuneCardsProps {
 export default function FortuneCards({ onSelectFortune, isLoading = false }: FortuneCardsProps) {
   const fortuneTypes = [
     {
+      type: 'casual',
+      title: '이야기',
+      description: '일상의 고민과 궁금한 것들을 편하게 나눠보세요',
+      subtitle: 'CASUAL TALK',
+      icon: MessageCircle,
+      gradient: 'from-emerald-500 to-teal-600',
+      glow: 'glow-emerald',
+    },
+    {
       type: 'saju',
       title: '사주팔자 상담',
       description: '생년월일을 바탕으로 한 성격과 삶의 방향 이야기',
@@ -35,15 +44,6 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
       icon: Star,
       gradient: 'from-cosmic-indigo to-ethereal-violet',
       glow: 'glow-purple',
-    },
-    {
-      type: 'casual',
-      title: '가벼운 대화',
-      description: '일상의 고민과 궁금한 것들을 편하게 나눠보세요',
-      subtitle: 'CASUAL TALK',
-      icon: MessageCircle,
-      gradient: 'from-emerald-500 to-teal-600',
-      glow: 'glow-emerald',
     },
   ];
 

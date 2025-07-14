@@ -115,7 +115,7 @@ export class FortuneService {
     if (session.fortuneType === 'casual') {
       await storage.updateFortuneSession(sessionId, {
         isCompleted: true,
-        summary: "편안한 대화 - 좋은 시간이었어요",
+        summary: "이야기 - 좋은 시간이었어요",
       });
       return;
     }
@@ -161,7 +161,7 @@ export class FortuneService {
       case 'astrology':
         return "안녕하세요! 별자리 이야기를 함께 나눠보아요. 당신의 특성이나 궁금한 점들을 편하게 말씀해 주세요.";
       case 'casual':
-        return "안녕하세요! 편안하게 대화를 나눠보아요. 일상의 고민, 궁금한 점, 무엇이든 자유롭게 이야기해 주세요.";
+        return "안녕하세요! 편안하게 이야기를 나눠보아요. 일상의 고민, 궁금한 점, 무엇이든 자유롭게 말씀해 주세요.";
       default:
         return "안녕하세요! 편안한 대화를 나눠보세요. 어떤 이야기든 자유롭게 말씀해 주세요.";
     }

@@ -113,11 +113,11 @@ The application is designed for deployment on Replit but can be adapted for othe
 
 ## Recent Changes
 
+- **Rebranded casual conversation type** - changed "가벼운 대화" to "이야기" and moved to first position in grid
+- **Updated UI labels across app** - consistent use of "이야기" for casual conversations in all components
+- **Refined chat interface** - casual conversations show "이야기 친구" as title and "대화 완료" as completion button
 - **Implemented storybook history feature** - added beautiful AI-generated story summaries for older conversations (24hr+)
 - **Enhanced history page layout** - now shows recent sessions normally and older sessions as poetic story summaries
 - **Added demo data generation** - created comprehensive demo data system accessible through settings page
 - **Improved storage with time-based filtering** - added methods for recent vs old session separation
 - **Updated API endpoints** - new routes for recent sessions and storybook generation using OpenAI
-- **Implemented conversational tone throughout the app** - softened language from mystical/dramatic to friendly and approachable
-- **Added "가벼운 대화" feature** - new casual conversation type for non-fortune related discussions
-- **Updated all AI prompts** to use conversational, friendly tone instead of formal mystical language

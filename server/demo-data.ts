@@ -39,7 +39,7 @@ export async function createDemoData(userId: string) {
     {
       userId,
       fortuneType: "casual",
-      title: "일상 대화",
+      title: "일상 이야기",
       summary: "오늘 하루 어떻게 보냈는지, 앞으로의 계획에 대해 편안하게 이야기를 나눴어요.",
       isCompleted: true,
       hasUserMessage: true,
@@ -63,7 +63,7 @@ export async function createDemoData(userId: string) {
     {
       userId,
       fortuneType: "casual",
-      title: "가벼운 대화",
+      title: "이야기",
       summary: "요즘 고민에 대해 편안하게 대화했어요.",
       isCompleted: true,
       hasUserMessage: true,

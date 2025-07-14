@@ -30,7 +30,7 @@ export default function History() {
       case 'astrology':
         return '별자리';
       case 'casual':
-        return '가벼운 대화';
+        return '이야기';
       default:
         return type;
     }

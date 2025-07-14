@@ -139,6 +139,8 @@ export default function Chat() {
         return "타로 마스터";
       case 'astrology':
         return "점성술 마스터";
+      case 'casual':
+        return "이야기 친구";
       default:
         return "운세 마스터";
     }
@@ -205,7 +207,7 @@ export default function Chat() {
             onClick={handleCompleteSession}
             disabled={completeSessionMutation.isPending}
           >
-            상담 완료
+            {session.fortuneType === 'casual' ? '대화 완료' : '상담 완료'}
           </Button>
         )}
       </div>

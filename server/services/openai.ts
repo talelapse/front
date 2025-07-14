@@ -217,7 +217,7 @@ export async function generateStorybookSummary(
     const sessionType = session.fortuneType === 'saju' ? '사주 이야기' :
                        session.fortuneType === 'tarot' ? '타로 이야기' :
                        session.fortuneType === 'astrology' ? '별자리 이야기' :
-                       '편안한 대화';
+                       '이야기';
     return `${sessionType}: ${session.summary || session.title}`;
   }).join('\n');
 
