@@ -17,7 +17,7 @@ export default function Home() {
   const queryClient = useQueryClient();
 
   // Redirect to profile setup if profile is not complete
-  const { data: profileData } = useQuery({
+  const { data: profileData, error: profileError } = useQuery({
     queryKey: ["/api/profile"],
     enabled: !!user,
     retry: false,
@@ -42,10 +42,11 @@ export default function Home() {
       return;
     }
 
-    if (profileData && !profileData.isSetupComplete) {
+    // If profile doesn't exist (404 error) or profile exists but not complete, redirect to setup
+    if (user && (profileError || (profileData && !profileData.isSetupComplete))) {
       setLocation("/profile-setup");
     }
-  }, [authLoading, user, profileData, setLocation, toast]);
+  }, [authLoading, user, profileData, profileError, setLocation, toast]);
 
   const startFortuneMutation = useMutation({
     mutationFn: async ({ fortuneType, title }: { fortuneType: string; title: string }) => {
@@ -83,12 +84,24 @@ export default function Home() {
     startFortuneMutation.mutate({ fortuneType, title });
   };
 
-  if (authLoading || !user || !profileData) {
+  if (authLoading || !user) {
     return (
       <div className="min-h-screen bg-warm-gray flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-mystical-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600">로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If we have user but no profile data (and no error), still loading
+  if (!profileData && !profileError) {
+    return (
+      <div className="min-h-screen bg-warm-gray flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-mystical-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">프로필 정보를 확인하는 중...</p>
         </div>
       </div>
     );
@@ -140,16 +153,18 @@ export default function Home() {
               안녕하세요, {user.firstName || user.email?.split('@')[0]}님!
             </h2>
             <p className="text-purple-100 mb-4">오늘은 어떤 운세가 궁금하신가요?</p>
-            <div className="flex items-center space-x-4 text-sm">
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4" />
-                <span>{new Date(profileData.birthDate).toLocaleDateString('ko-KR')}</span>
+            {profileData && (
+              <div className="flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>{new Date(profileData.birthDate).toLocaleDateString('ko-KR')}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-4 w-4" />
+                  <span>{profileData.birthLocation}</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span>{profileData.birthLocation}</span>
-              </div>
-            </div>
+            )}
           </CardContent>
         </Card>
 
