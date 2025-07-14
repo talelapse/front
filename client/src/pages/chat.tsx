@@ -176,24 +176,24 @@ export default function Chat() {
   const { session, messages } = chatData;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Chat Header */}
-      <div className="bg-mystical-purple text-white p-4 flex items-center space-x-3 shadow-sm">
+      <div className="mystical-card p-4 flex items-center space-x-3 shadow-lg border-b border-ethereal-violet/30">
         <Button
           variant="ghost"
           size="sm"
-          className="p-2 hover:bg-white/20 text-white"
+          className="p-2 hover:bg-ethereal-violet/20 text-moonlight"
           onClick={() => setLocation("/")}
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 bg-ethereal-violet/30 rounded-full flex items-center justify-center">
             {getFortuneIcon(session.fortuneType)}
           </div>
           <div>
-            <h3 className="font-semibold">{getFortuneTitle(session.fortuneType)}</h3>
-            <p className="text-sm text-purple-200">온라인</p>
+            <h3 className="font-semibold font-mystical text-moonlight">{getFortuneTitle(session.fortuneType)}</h3>
+            <p className="text-sm text-star-silver">신비로운 대화 중...</p>
           </div>
         </div>
         <div className="flex-1" />
@@ -201,7 +201,7 @@ export default function Chat() {
           <Button
             variant="ghost"
             size="sm"
-            className="text-white hover:bg-white/20"
+            className="text-moonlight hover:bg-ethereal-violet/20 border border-mystical-gold/30"
             onClick={handleCompleteSession}
             disabled={completeSessionMutation.isPending}
           >
@@ -211,7 +211,7 @@ export default function Chat() {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-deep-navy/50 to-shadow-purple/30">
         {messages.map((msg) => (
           <ChatMessage key={msg.id} message={msg} fortuneType={session.fortuneType} />
         ))}
@@ -221,21 +221,21 @@ export default function Chat() {
       </div>
 
       {/* Chat Input */}
-      <div className="bg-white border-t p-4">
+      <div className="mystical-card border-t border-ethereal-violet/30 p-4">
         <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
           <div className="flex-1 relative">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="메시지를 입력하세요..."
-              className="pr-12 bg-gray-100 rounded-2xl focus:ring-2 focus:ring-mystical-purple focus:bg-white"
+              placeholder="신비로운 메시지를 입력하세요..."
+              className="pr-12 bg-shadow-purple/40 text-moonlight placeholder:text-star-silver/60 rounded-2xl border-ethereal-violet/30 focus:ring-2 focus:ring-mystical-gold focus:bg-shadow-purple/60 focus:border-mystical-gold/50"
               disabled={sendMessageMutation.isPending}
             />
             <Button
               type="button"
               variant="ghost"
               size="sm"
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-mystical-purple p-1"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-star-silver hover:text-mystical-gold p-1"
               disabled={sendMessageMutation.isPending}
             >
               <Mic className="h-4 w-4" />
@@ -243,10 +243,10 @@ export default function Chat() {
           </div>
           <Button
             type="submit"
-            className="bg-mystical-purple hover:bg-purple-700 p-3 rounded-full"
+            className="bg-gradient-to-r from-mystical-purple to-ethereal-violet hover:from-mystical-purple/90 hover:to-ethereal-violet/90 p-3 rounded-full glow-purple"
             disabled={!message.trim() || sendMessageMutation.isPending}
           >
-            <Send className="h-5 w-5" />
+            <Send className="h-5 w-5 text-white" />
           </Button>
         </form>
 
@@ -257,7 +257,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
+                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
                 onClick={() => handleQuickMessage("연애운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
@@ -266,7 +266,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
+                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
                 onClick={() => handleQuickMessage("재물운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
@@ -275,7 +275,7 @@ export default function Chat() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="whitespace-nowrap rounded-full text-sm"
+                className="whitespace-nowrap rounded-full text-sm bg-ethereal-violet/20 text-moonlight hover:bg-ethereal-violet/30 border-ethereal-violet/30"
                 onClick={() => handleQuickMessage("건강운은 어떤가요?")}
                 disabled={sendMessageMutation.isPending}
               >
