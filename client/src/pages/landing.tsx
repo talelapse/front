@@ -31,7 +31,7 @@ export default function Landing() {
                 로그인
               </Button>
               <Button 
-                className="bg-mystical-gold text-white hover:bg-yellow-500"
+                className="bg-mystical-gold text-black hover:bg-yellow-500 hover:text-black font-semibold"
                 onClick={handleLogin}
               >
                 회원가입
@@ -87,7 +87,7 @@ export default function Landing() {
           
           <Button 
             size="lg"
-            className="bg-mystical-gold text-white px-8 py-4 text-lg font-semibold hover:bg-yellow-500 animate-glow"
+            className="bg-mystical-gold text-black px-8 py-4 text-lg font-semibold hover:bg-yellow-500 hover:text-black animate-glow"
             onClick={handleLogin}
           >
             지금 무료로 시작하기
