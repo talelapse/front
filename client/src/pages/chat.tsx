@@ -1,0 +1,334 @@
+import { useState, useEffect, useRef } from "react";
+import { useParams, useLocation } from "wouter";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
+import { isUnauthorizedError } from "@/lib/authUtils";
+import { apiRequest } from "@/lib/queryClient";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, Send, Mic, ArrowDown, Sparkles, Star, User, Bookmark, Share } from "lucide-react";
+import ChatMessage from "@/components/chat-message";
+import TypingIndicator from "@/components/ui/typing-indicator";
+import type { FortuneSession, FortuneMessage } from "@shared/schema";
+
+interface ChatData {
+  session: FortuneSession;
+  messages: FortuneMessage[];
+  result: any;
+}
+
+export default function Chat() {
+  const { sessionId } = useParams();
+  const [, setLocation] = useLocation();
+  const [message, setMessage] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const { data: chatData, isLoading } = useQuery<ChatData>({
+    queryKey: ["/api/fortune/sessions", sessionId],
+    enabled: !!sessionId,
+    retry: false,
+  });
+
+  const sendMessageMutation = useMutation({
+    mutationFn: async (messageText: string) => {
+      const response = await apiRequest("POST", `/api/fortune/sessions/${sessionId}/messages`, {
+        message: messageText,
+      });
+      return response.json();
+    },
+    onMutate: () => {
+      setIsTyping(true);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/fortune/sessions", sessionId] });
+      setMessage("");
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "메시지 전송 실패",
+        description: "다시 시도해주세요.",
+        variant: "destructive",
+      });
+    },
+    onSettled: () => {
+      setIsTyping(false);
+    },
+  });
+
+  const completeSessionMutation = useMutation({
+    mutationFn: async () => {
+      const response = await apiRequest("POST", `/api/fortune/sessions/${sessionId}/complete`);
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/fortune/sessions", sessionId] });
+      setLocation(`/result/${sessionId}`);
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "오류가 발생했습니다",
+        description: "세션 완료에 실패했습니다.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatData?.messages, isTyping]);
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim() || sendMessageMutation.isPending) return;
+    sendMessageMutation.mutate(message);
+  };
+
+  const handleQuickMessage = (quickMessage: string) => {
+    if (sendMessageMutation.isPending) return;
+    sendMessageMutation.mutate(quickMessage);
+  };
+
+  const handleCompleteSession = () => {
+    completeSessionMutation.mutate();
+  };
+
+  const getFortuneIcon = (fortuneType: string) => {
+    switch (fortuneType) {
+      case 'saju':
+        return <ArrowDown className="h-5 w-5" />;
+      case 'tarot':
+        return <Sparkles className="h-5 w-5" />;
+      case 'astrology':
+        return <Star className="h-5 w-5" />;
+      default:
+        return <WindArrowDown className="h-5 w-5" />;
+    }
+  };
+
+  const getFortuneTitle = (fortuneType: string) => {
+    switch (fortuneType) {
+      case 'saju':
+        return "사주 마스터";
+      case 'tarot':
+        return "타로 마스터";
+      case 'astrology':
+        return "점성술 마스터";
+      default:
+        return "운세 마스터";
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-mystical-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">채팅을 불러오는 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!chatData) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-gray-600">채팅을 찾을 수 없습니다.</p>
+            <Button 
+              className="mt-4" 
+              onClick={() => setLocation("/")}
+            >
+              홈으로 돌아가기
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  const { session, messages } = chatData;
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Chat Header */}
+      <div className="bg-mystical-purple text-white p-4 flex items-center space-x-3 shadow-sm">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="p-2 hover:bg-white/20 text-white"
+          onClick={() => setLocation("/")}
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </Button>
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+            {getFortuneIcon(session.fortuneType)}
+          </div>
+          <div>
+            <h3 className="font-semibold">{getFortuneTitle(session.fortuneType)}</h3>
+            <p className="text-sm text-purple-200">온라인</p>
+          </div>
+        </div>
+        <div className="flex-1" />
+        {messages.length > 2 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-white/20"
+            onClick={handleCompleteSession}
+            disabled={completeSessionMutation.isPending}
+          >
+            상담 완료
+          </Button>
+        )}
+      </div>
+
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+        {messages.map((msg) => (
+          <ChatMessage key={msg.id} message={msg} fortuneType={session.fortuneType} />
+        ))}
+        
+        {isTyping && <TypingIndicator />}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Chat Input */}
+      <div className="bg-white border-t p-4">
+        <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
+          <div className="flex-1 relative">
+            <Input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="메시지를 입력하세요..."
+              className="pr-12 bg-gray-100 rounded-2xl focus:ring-2 focus:ring-mystical-purple focus:bg-white"
+              disabled={sendMessageMutation.isPending}
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-mystical-purple p-1"
+              disabled={sendMessageMutation.isPending}
+            >
+              <Mic className="h-4 w-4" />
+            </Button>
+          </div>
+          <Button
+            type="submit"
+            className="bg-mystical-purple hover:bg-purple-700 p-3 rounded-full"
+            disabled={!message.trim() || sendMessageMutation.isPending}
+          >
+            <Send className="h-5 w-5" />
+          </Button>
+        </form>
+
+        {/* Quick Actions */}
+        <div className="flex space-x-2 mt-3 overflow-x-auto">
+          {session.fortuneType === 'saju' && (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("연애운은 어떤가요?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                연애운은?
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("재물운은 어떤가요?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                재물운은?
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("건강운은 어떤가요?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                건강운은?
+              </Button>
+            </>
+          )}
+          {session.fortuneType === 'tarot' && (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("카드를 한 장 뽑아주세요")}
+                disabled={sendMessageMutation.isPending}
+              >
+                카드 뽑기
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("연애에 대해 알고 싶어요")}
+                disabled={sendMessageMutation.isPending}
+              >
+                연애 타로
+              </Button>
+            </>
+          )}
+          {session.fortuneType === 'astrology' && (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("오늘의 별자리 운세는?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                오늘의 운세
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="whitespace-nowrap rounded-full text-sm"
+                onClick={() => handleQuickMessage("이번 달 운세는?")}
+                disabled={sendMessageMutation.isPending}
+              >
+                이번 달 운세
+              </Button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
