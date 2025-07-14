@@ -16,7 +16,7 @@ import {
   type FortuneResult,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, gte, lt } from "drizzle-orm";
 
 // Interface for storage operations
 export interface IStorage {
@@ -34,6 +34,8 @@ export interface IStorage {
   createFortuneSession(session: InsertFortuneSession): Promise<FortuneSession>;
   getFortuneSession(id: number): Promise<FortuneSession | undefined>;
   getUserFortuneSessions(userId: string): Promise<FortuneSession[]>;
+  getRecentUserSessions(userId: string, hours: number): Promise<FortuneSession[]>;
+  getOldUserSessions(userId: string, hours: number): Promise<FortuneSession[]>;
   updateFortuneSession(id: number, updates: Partial<InsertFortuneSession>): Promise<FortuneSession>;
   
   // Fortune message operations
@@ -119,6 +121,32 @@ export class DatabaseStorage implements IStorage {
       .where(and(
         eq(fortuneSessions.userId, userId),
         eq(fortuneSessions.hasUserMessage, true)
+      ))
+      .orderBy(desc(fortuneSessions.createdAt));
+  }
+
+  async getRecentUserSessions(userId: string, hours: number): Promise<FortuneSession[]> {
+    const cutoffTime = new Date(Date.now() - (hours * 60 * 60 * 1000));
+    return await db
+      .select()
+      .from(fortuneSessions)
+      .where(and(
+        eq(fortuneSessions.userId, userId),
+        eq(fortuneSessions.hasUserMessage, true),
+        gte(fortuneSessions.createdAt, cutoffTime)
+      ))
+      .orderBy(desc(fortuneSessions.createdAt));
+  }
+
+  async getOldUserSessions(userId: string, hours: number): Promise<FortuneSession[]> {
+    const cutoffTime = new Date(Date.now() - (hours * 60 * 60 * 1000));
+    return await db
+      .select()
+      .from(fortuneSessions)
+      .where(and(
+        eq(fortuneSessions.userId, userId),
+        eq(fortuneSessions.hasUserMessage, true),
+        lt(fortuneSessions.createdAt, cutoffTime)
       ))
       .orderBy(desc(fortuneSessions.createdAt));
   }

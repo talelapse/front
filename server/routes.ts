@@ -102,6 +102,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get('/api/fortune/sessions/recent', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const hours = parseInt(req.query.hours as string) || 24;
+      const sessions = await storage.getRecentUserSessions(userId, hours);
+      res.json(sessions);
+    } catch (error) {
+      console.error("Error fetching recent sessions:", error);
+      res.status(500).json({ message: "최근 세션을 가져오는데 실패했습니다." });
+    }
+  });
+
+  app.get('/api/fortune/storybook', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const hours = parseInt(req.query.hours as string) || 24;
+      
+      const oldSessions = await storage.getOldUserSessions(userId, hours);
+      if (oldSessions.length === 0) {
+        res.json({ story: null });
+        return;
+      }
+
+      const userProfile = await storage.getUserProfile(userId);
+      const { generateStorybookSummary } = await import('./services/openai');
+      const story = await generateStorybookSummary(oldSessions, userProfile);
+      
+      res.json({ 
+        story,
+        sessionCount: oldSessions.length,
+        oldestDate: oldSessions[oldSessions.length - 1]?.createdAt,
+        newestDate: oldSessions[0]?.createdAt
+      });
+    } catch (error) {
+      console.error("Error generating storybook:", error);
+      res.status(500).json({ message: "동화 이야기 생성에 실패했습니다." });
+    }
+  });
+
   app.get('/api/fortune/sessions/:id', isAuthenticated, async (req: any, res) => {
     try {
       const sessionId = parseInt(req.params.id);
