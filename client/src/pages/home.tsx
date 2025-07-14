@@ -110,17 +110,17 @@ export default function Home() {
   const recentSessions = sessions.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-warm-gray">
+    <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-10">
+      <div className="mystical-card shadow-lg shadow-mystical-purple/20 sticky top-0 z-10 border-b border-ethereal-violet/30">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Moon className="text-mystical-purple h-8 w-8" />
+              <Sparkles className="text-mystical-gold h-8 w-8 glow-gold" />
               <div>
-                <h1 className="text-lg font-bold text-gray-800">FateChat</h1>
-                <p className="text-sm text-gray-600">
-                  {user.firstName || user.email}님
+                <h1 className="text-lg font-bold font-mystical text-moonlight">FateChat</h1>
+                <p className="text-sm text-star-silver">
+                  {user.firstName || user.email}님의 운명
                 </p>
               </div>
             </div>
@@ -128,17 +128,17 @@ export default function Home() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2"
+                className="p-2 text-moonlight hover:bg-ethereal-violet/20 hover:glow-purple"
               >
-                <Bell className="h-5 w-5 text-gray-600" />
+                <Bell className="h-5 w-5" />
               </Button>
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2"
+                className="p-2 text-moonlight hover:bg-ethereal-violet/20 hover:glow-purple"
                 onClick={() => setLocation("/settings")}
               >
-                <Settings className="h-5 w-5 text-gray-600" />
+                <Settings className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -147,12 +147,16 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Welcome Section */}
-        <Card className="bg-gradient-to-r from-mystical-purple to-purple-600 text-white mb-8">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-bold mb-2">
+        <Card className="mystical-card glow-purple mb-8 border border-ethereal-violet/30">
+          <CardContent className="p-6 relative overflow-hidden">
+            {/* Mystical background elements */}
+            <div className="absolute top-2 right-4 w-16 h-16 bg-gradient-to-br from-mystical-gold/10 to-transparent rounded-full blur-sm"></div>
+            <div className="absolute bottom-2 left-4 w-12 h-12 bg-gradient-to-tr from-ethereal-violet/10 to-transparent rounded-full blur-sm"></div>
+            
+            <h2 className="text-2xl font-bold font-mystical mb-2 text-moonlight">
               안녕하세요, {user.firstName || user.email?.split('@')[0]}님!
             </h2>
-            <p className="text-purple-100 mb-4">오늘은 어떤 운세가 궁금하신가요?</p>
+            <p className="text-star-silver mb-4">오늘은 어떤 운명의 신비가 궁금하신가요?</p>
             {profileData && (
               <div className="flex items-center space-x-4 text-sm">
                 <div className="flex items-center space-x-2">

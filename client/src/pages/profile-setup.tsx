@@ -133,17 +133,17 @@ export default function ProfileSetup() {
   const progressPercentage = (step / 3) * 100;
 
   return (
-    <div className="min-h-screen bg-deep-navy">
+    <div className="min-h-screen">
       {/* Progress Bar */}
-      <div className="bg-white/10 p-4">
+      <div className="bg-shadow-purple/30 p-4 border-b border-ethereal-violet/20">
         <div className="max-w-md mx-auto">
-          <div className="flex justify-between text-sm text-white/60 mb-2">
-            <span>기본 정보 입력</span>
+          <div className="flex justify-between text-sm text-star-silver mb-2">
+            <span>운명 정보 설정</span>
             <span>{step}/3</span>
           </div>
-          <div className="w-full bg-white/20 rounded-full h-2">
+          <div className="w-full bg-cosmic-indigo/40 rounded-full h-3">
             <div 
-              className="bg-mystical-gold h-2 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-mystical-gold to-ancient-amber h-3 rounded-full transition-all duration-500 glow-gold"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -151,19 +151,23 @@ export default function ProfileSetup() {
       </div>
 
       <div className="flex-1 flex items-center justify-center p-4">
-        <Card className="max-w-md w-full">
-          <CardContent className="p-8">
-            <div className="text-center mb-8">
-              <CalendarDays className="text-mystical-purple h-12 w-12 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        <Card className="max-w-md w-full mystical-card glow-purple border-ethereal-violet/30">
+          <CardContent className="p-8 relative overflow-hidden">
+            {/* Mystical background elements */}
+            <div className="absolute top-4 right-6 w-20 h-20 bg-gradient-to-br from-mystical-gold/5 to-transparent rounded-full blur-lg"></div>
+            <div className="absolute bottom-6 left-4 w-16 h-16 bg-gradient-to-tr from-ethereal-violet/5 to-transparent rounded-full blur-lg"></div>
+            
+            <div className="text-center mb-8 relative z-10">
+              <CalendarDays className="text-mystical-gold h-12 w-12 mx-auto mb-4 glow-gold" />
+              <h2 className="text-2xl font-bold font-mystical text-moonlight mb-2">
                 {step === 1 && "생년월일을 알려주세요"}
                 {step === 2 && "출생 정보를 입력해주세요"}
                 {step === 3 && "마지막 단계입니다"}
               </h2>
-              <p className="text-gray-600">
-                {step === 1 && "정확한 운세를 위해 출생 정보가 필요해요"}
-                {step === 2 && "출생 시간과 장소를 알려주세요"}
-                {step === 3 && "성별과 관심 분야를 선택해주세요"}
+              <p className="text-star-silver">
+                {step === 1 && "정확한 운명 해석을 위해 출생 정보가 필요해요"}
+                {step === 2 && "운세의 정밀도를 높이기 위한 추가 정보입니다"}
+                {step === 3 && "당신만의 운명 프로필을 완성해보세요"}
               </p>
             </div>
 

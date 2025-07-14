@@ -13,28 +13,28 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
       type: 'saju',
       title: '사주팔자',
       description: '생년월일을 바탕으로 한 정통 사주 풀이',
+      subtitle: '四柱八字',
       icon: ArrowDown,
-      color: 'mystical-purple',
-      bgColor: 'purple-100',
-      hoverBgColor: 'purple-200',
+      gradient: 'from-mystical-purple to-ethereal-violet',
+      glow: 'glow-purple',
     },
     {
       type: 'tarot',
       title: '타로',
       description: '카드가 전하는 신비로운 메시지',
+      subtitle: 'TAROT',
       icon: Sparkles,
-      color: 'mystical-gold',
-      bgColor: 'amber-100',
-      hoverBgColor: 'amber-200',
+      gradient: 'from-mystical-gold to-ancient-amber',
+      glow: 'glow-gold',
     },
     {
       type: 'astrology',
       title: '점성술',
       description: '별자리와 행성으로 보는 운세',
+      subtitle: 'ASTROLOGY',
       icon: Star,
-      color: 'indigo-600',
-      bgColor: 'indigo-100',
-      hoverBgColor: 'indigo-200',
+      gradient: 'from-cosmic-indigo to-ethereal-violet',
+      glow: 'glow-purple',
     },
   ];
 
@@ -45,25 +45,32 @@ export default function FortuneCards({ onSelectFortune, isLoading = false }: For
         return (
           <Card 
             key={fortune.type}
-            className="group hover:shadow-md transition-shadow cursor-pointer"
+            className={`mystical-card group hover:${fortune.glow} transition-all duration-300 cursor-pointer border border-ethereal-violet/30 hover:border-mystical-purple/50`}
           >
-            <CardContent className="p-6 text-center">
-              <div className={`w-16 h-16 bg-${fortune.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-${fortune.hoverBgColor} transition-colors`}>
-                <IconComponent className={`text-${fortune.color} h-8 w-8`} />
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              {/* Mystical background gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${fortune.gradient} opacity-5 group-hover:opacity-10 transition-opacity`}></div>
+              
+              <div className="relative z-10">
+                {/* Icon with mystical glow */}
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-ethereal-violet/20 group-hover:bg-ethereal-violet/30 transition-colors">
+                  <IconComponent className="text-mystical-gold h-8 w-8 group-hover:glow-gold transition-all" />
+                </div>
+                
+                {/* Title with mystical font */}
+                <h3 className="text-lg font-bold font-mystical text-moonlight mb-1">{fortune.title}</h3>
+                <p className="text-xs text-star-silver/60 mb-3 font-mystical">{fortune.subtitle}</p>
+                <p className="text-star-silver text-sm mb-4">{fortune.description}</p>
+                
+                {/* Mystical button */}
+                <Button 
+                  className={`w-full bg-gradient-to-r ${fortune.gradient} hover:opacity-90 text-white font-medium border-0 shadow-lg`}
+                  onClick={() => onSelectFortune(fortune.type, `${fortune.title} 상담`)}
+                  disabled={isLoading}
+                >
+                  {isLoading ? '준비 중...' : '운명을 알아보기'}
+                </Button>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">{fortune.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{fortune.description}</p>
-              <Button 
-                className={`w-full ${
-                  fortune.type === 'saju' ? 'bg-mystical-purple hover:bg-purple-700' :
-                  fortune.type === 'tarot' ? 'bg-mystical-gold hover:bg-yellow-500' :
-                  'bg-indigo-600 hover:bg-indigo-700'
-                }`}
-                onClick={() => onSelectFortune(fortune.type, `${fortune.title} 상담`)}
-                disabled={isLoading}
-              >
-                시작하기
-              </Button>
             </CardContent>
           </Card>
         );
