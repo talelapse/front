@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
 
 @tailwind base;
 @tailwind components;
@@ -79,6 +80,11 @@
   /* Mystical text styling */
   .font-mystical {
     font-family: 'Nanum Myeongjo', serif;
+  }
+  
+  /* Traditional Korean font */
+  .font-iropke {
+    font-family: 'Iropke Batang', 'Nanum Myeongjo', serif;
   }
   
   /* Glowing effects */
